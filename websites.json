@@ -1,0 +1,82 @@
+[
+	{
+		"name": "Tiki",
+		"host": "tiki.vn",
+		"protocol": "https",
+		"search": {
+			"pathname": "search",
+			"query": "q",
+			"page": "page",
+			"items": ".product-box-list .product-item",
+			"results_count": {"sel": "h4[name=results-count-with-execution-time]", "attr": "text"},
+			"item": {
+				"href": {"sel": "a", "attr": "href"},
+				"name": {"sel": "a", "attr": "title"},
+				"image": {"sel": ".image img", "attr": "src"},
+				"price_sale": {"sel": ".price-sale", "attr": "text"},
+				"price_regular": {"sel": ".price-regular", "attr": "text"},
+				"sale_tag": {"sel": ".sale-tag", "attr": "text"}
+			}
+		}
+	},
+	{
+		"name": "Lazada",
+		"host": "www.lazada.vn",
+		"protocol": "https",
+		"search": {
+			"pathname": "catalog",
+			"query": "q",
+			"page": "page",
+			"items": ".c2prKC",
+			"results_count": {"sel": ".cUQuRr .c1DXz4 span:first-child", "attr": "text"},
+			"item": {
+				"href": {"sel": ".cRjKsc a", "attr": "href"},
+				"name": {"sel": ".c16H9d a", "attr": "title"},
+				"image": {"sel": ".cRjKsc img", "attr": "src"},
+				"price_sale": {"sel": ".c3gUW0 .c13VH6", "attr": "text"},
+				"price_regular": {"sel": ".c3lr34 .c1-B2V .c13VH6", "attr": "text"},
+				"sale_tag": {"sel": ".c3lr34 .c1hkC1", "attr": "text"},
+				"location": {"sel": ".c15YQ9 .c2i43-", "attr": "text"}
+			}
+		}
+	},
+	{
+		"name": "Adayroi",
+		"host": "www.adayroi.com",
+		"protocol": "https",
+		"search": {
+			"pathname": "tim-kiem",
+			"query": "text",
+			"page": "page",
+			"items": ".product-item",
+			"results_count": {"sel": ".header__search-result", "attr": "text"},
+			"item": {
+				"href": {"sel": ".product-item__info-title", "attr": "href"},
+				"name": {"sel": ".product-item__info-title", "attr": "text"},
+				"image": {"sel": ".product-item__thumbnail img:first-child", "attr": "data-original|src"},
+				"price_sale": {"sel": ".product-item__info-price-sale", "attr": "text"},
+				"price_regular": {"sel": ".product-item__info-price-original", "attr": "text"},
+				"sale_tag": {"sel": ".product-item__info-discount", "attr": "text"}
+			}
+		}
+	},
+	{
+		"name": "Sendo",
+		"host": "www.sendo.vn",
+		"protocol": "https",
+		"search": {
+			"pathname": "tim-kiem",
+			"query": "q",
+			"page": "p",
+			"items": ".box_product",
+			"results_count": {"sel": ".txt-amount-products strong", "attr": "text"},
+			"item": {
+				"href": {"sel": ".productPreview a", "attr": "href"},
+				"name": {"sel": ".name_product", "attr": "text"},
+				"image": {"sel": ".productPreview img", "attr": "data-original|src"},
+				"price_sale": {"sel": ".current_price", "attr": "text"},
+				"price_regular": {"sel": ".old_price", "attr": "text"}
+			}
+		}
+	}
+]

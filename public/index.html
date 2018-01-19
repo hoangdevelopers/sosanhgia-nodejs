@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+	<title>So sánh giá</title>
+	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css'>
+	<link rel="stylesheet" href="owlcarousel/assets/owl.carousel.min.css">
+	<link rel="stylesheet" href="owlcarousel/assets/owl.theme.default.min.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<link rel="icon" href="ecom.png" />
+	<meta name="theme-color" content="#2185D0">
+</head>
+<body>
+	<div id="app">
+		<div class="ui vertical basic buttons left floated" style="position: fixed; margin-left: 5px" v-if="itemList.length > 0">
+			<a class="ui button" href="#app">TOP</a>
+			<a v-for="list in itemList" class="ui button" :href="`#${list.website.name}`">
+				{{ list.website.name }}
+			</a>
+		</div>
+		<div class="ui container">
+			<div class="ui segment">
+				<div class="ui grid">
+					<div class="fourteen wide column">
+						<select multiple="" class="ui fluid compact dropdown" id="select-websites" @change="updateWebsites">
+							<option value="">Select Website</option>
+							<option v-for="website in allWebsites" :value="website.name" :selected="checkSelectedWebsite(website.name)">
+								{{ website.name }}
+							</option>
+						</select>
+					</div>
+					<div class="two wide column">
+						<div class="ui fluid input">
+							<input type="number" min="1" v-model="searchPages">
+						</div>
+					</div>
+				</div>
+				<div class="ui fluid icon input" style="margin-top: 10px">
+				    <input placeholder="Search..." type="text" v-model.lazy.trim="queryStr" @change="updateItems">
+				    <i class="search icon"></i>
+				</div>
+			</div>
+			<div id="items" v-if="itemList.length > 0">
+				<div class="ui raised segment" v-for="list in itemList" :id="list.website.name">
+					<a class="ui header" :href="list.website.link" target="_blank">
+						{{ list.website.name }}
+					</a>
+					<div style="float: right;">
+						Kết quả: {{ list.items.length }}/{{ list.results_count }} <span v-if="list.pages !== undefined">| Số trang: {{ list.pages }}</span>
+					</div>
+					<div class="item-list owl-carousel owl-theme" :id="`${list.website.name}-item-list`" v-if="list.items !== undefined">
+						<div v-for="item in list.items">
+							<div class="ui card">
+								<div class="image">
+									<img class="owl-lazy" :data-src="item.image">
+								</div>
+								<div class="content">
+									<a :href="item.href" :title="item.name" class="header" target="_blank">
+										{{ short(item.name) }}
+									</a>
+									<div class="description">
+										{{ item.price_sale }}
+										<br>
+										<span class="meta" style="text-decoration: line-through">{{ item.price_regular }}</span>
+										<span style="color: red; margin-left: 5px">{{ item.sale_tag }}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js'></script>
+    <script src="owlcarousel/jquery.mousewheel.min.js"></script>
+    <script src="owlcarousel/owl.carousel.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.min.js'></script>
+    <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+	<script src="js/script.js"></script>
+</body>
+</html>
